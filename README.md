@@ -4,9 +4,6 @@ Un assistant qui répond à des questions sur un corpus de documents (PDF, Markd
 et surtout un **banc d'évaluation reproductible** pour comparer objectivement des configurations :
 découpage, recherche, modèles d'embeddings, LLM propriétaires vs open source — en qualité, latence et coût.
 
-> **Résultats** : _à compléter après ta campagne — mets ici le tableau de `results/reference/report.md`
-> et 3 phrases de conclusion (ex. « le découpage à 400 caractères gagne +12 pts d'exactitude ; Mistral local
-> atteint 85 % de la qualité de Gemini Flash pour un coût nul mais une latence ×3 »)._
 
 ## Architecture
 
