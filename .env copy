@@ -1,0 +1,13 @@
+# Copie ce fichier en .env et remplis les clés des fournisseurs que tu utilises.
+GOOGLE_API_KEY=
+OPENAI_API_KEY=
+# Ollama (modèles locaux) : http://localhost:11434 par défaut
+# OLLAMA_BASE_URL=http://localhost:11434
+
+# Optionnel : traçage des appels dans Langfuse (pip install -e ".[tracing]")
+# LANGFUSE_PUBLIC_KEY=
+# LANGFUSE_SECRET_KEY=
+# LANGFUSE_HOST=https://cloud.langfuse.com
+
+# Configuration utilisée par l'API et la démo
+# RAG_CONFIG=configs/default.yaml
