@@ -12,11 +12,12 @@ découpage, recherche, modèles d'embeddings, LLM propriétaires vs open source 
 
 ```mermaid
 flowchart LR
-    D[PDF / MD / TXT] --> I[Ingestion<br/>nettoyage + découpage] --> E[Embeddings] --> V[(Chroma)]
-    Q[Question] --> R[Recherche top-k<br/>similarité ou MMR] --> V
-    R --> P[Prompt avec extraits numérotés] --> L[LLM<br/>Gemini · OpenAI · Ollama] --> A[Réponse citée [1][2]]
-    A --> API[FastAPI /ask] & UI[Streamlit]
-    A --> EV[Évaluation<br/>métriques + LLM-juge] --> REP[report.md · summary.csv]
+    D["PDF / MD / TXT"] --> I["Ingestion<br/>nettoyage + découpage"] --> E["Embeddings"] --> V[("Chroma")]
+    Q["Question"] --> R["Recherche top-k<br/>similarité ou MMR"] --> V
+    R --> P["Prompt avec extraits numérotés"] --> L["LLM<br/>Gemini · OpenAI · Ollama"] --> A["Réponse citée #91;1#93;#91;2#93;"]
+    A --> API["FastAPI /ask"]
+    A --> UI["Streamlit"]
+    A --> EV["Évaluation<br/>métriques + LLM-juge"] --> REP["report.md · summary.csv"]
 ```
 
 | Module | Rôle |
