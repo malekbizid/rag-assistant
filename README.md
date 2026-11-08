@@ -4,19 +4,17 @@ Un assistant qui répond à des questions sur un corpus de documents (PDF, Markd
 et surtout un **banc d'évaluation reproductible** pour comparer objectivement des configurations :
 découpage, recherche, modèles d'embeddings, LLM propriétaires vs open source — en qualité, latence et coût.
 
-> **Résultats** : _à compléter après ta campagne — mets ici le tableau de `results/reference/report.md`
-> et 3 phrases de conclusion (ex. « le découpage à 400 caractères gagne +12 pts d'exactitude ; Mistral local
-> atteint 85 % de la qualité de Gemini Flash pour un coût nul mais une latence ×3 »)._
 
 ## Architecture
 
 ```mermaid
 flowchart LR
-    D[PDF / MD / TXT] --> I[Ingestion<br/>nettoyage + découpage] --> E[Embeddings] --> V[(Chroma)]
-    Q[Question] --> R[Recherche top-k<br/>similarité ou MMR] --> V
-    R --> P[Prompt avec extraits numérotés] --> L[LLM<br/>Gemini · OpenAI · Ollama] --> A[Réponse citée [1][2]]
-    A --> API[FastAPI /ask] & UI[Streamlit]
-    A --> EV[Évaluation<br/>métriques + LLM-juge] --> REP[report.md · summary.csv]
+    D["PDF / MD / TXT"] --> I["Ingestion<br/>nettoyage + découpage"] --> E["Embeddings"] --> V[("Chroma")]
+    Q["Question"] --> R["Recherche top-k<br/>similarité ou MMR"] --> V
+    R --> P["Prompt avec extraits numérotés"] --> L["LLM<br/>Gemini · OpenAI · Ollama"] --> A["Réponse citée #91;1#93;#91;2#93;"]
+    A --> API["FastAPI /ask"]
+    A --> UI["Streamlit"]
+    A --> EV["Évaluation<br/>métriques + LLM-juge"] --> REP["report.md · summary.csv"]
 ```
 
 | Module | Rôle |
