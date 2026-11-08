@@ -1,0 +1,21 @@
+# Configuration utilisée par l'API, la démo Streamlit et les commandes ingest / pipeline.
+# Les noms de modèles évoluent vite : vérifie-les sur la doc du fournisseur avant de lancer.
+name: gemini-flash
+data_dir: data/raw          # mets tes PDF / .md / .txt ici
+index_dir: data/index
+chunk_size: 800             # en caractères
+chunk_overlap: 120
+top_k: 4
+search_type: similarity     # ou mmr (diversifie les extraits)
+
+embedding:
+  provider: gemini
+  name: models/gemini-embedding-001
+
+llm:
+  provider: gemini
+  name: gemini-2.5-flash
+  temperature: 0
+  # $ par million de tokens — recopie les tarifs actuels depuis la page tarifs du fournisseur
+  price_in_per_1m: null
+  price_out_per_1m: null

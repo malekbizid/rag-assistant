@@ -1,0 +1,11 @@
+# Démo sans clé d'API : corpus d'exemple + embeddings lexicaux + LLM factice.
+# Sert à vérifier l'installation ; les réponses ne sont PAS représentatives d'un vrai LLM.
+name: demo-offline
+data_dir: examples/corpus
+index_dir: data/index
+chunk_size: 400
+chunk_overlap: 60
+top_k: 3
+search_type: similarity
+embedding: {provider: hash}
+llm: {provider: fake, price_in_per_1m: 0, price_out_per_1m: 0}

@@ -1,0 +1,46 @@
+# Plan d'expériences : chaque entrée surcharge `base`.
+# Change UNE variable à la fois par rapport à la baseline, sinon tu ne sauras pas ce qui explique l'écart.
+# Lance seulement certaines expériences avec : --only baseline,chunks-400
+
+base:
+  data_dir: data/raw
+  index_dir: data/index
+  chunk_size: 800
+  chunk_overlap: 120
+  top_k: 4
+  search_type: similarity
+  embedding: {provider: gemini, name: models/gemini-embedding-001}
+  llm: {provider: gemini, name: gemini-2.5-flash, temperature: 0, price_in_per_1m: null, price_out_per_1m: null}
+
+# Le juge est le même pour toutes les expériences. Idéalement un modèle plus fort,
+# et d'une autre famille que les modèles évalués (biais d'auto-préférence).
+judge: {provider: openai, name: gpt-4.1, temperature: 0}
+
+experiments:
+  - name: baseline
+
+  # --- Découpage
+  - name: chunks-400
+    chunk_size: 400
+    chunk_overlap: 60
+  - name: chunks-1500
+    chunk_size: 1500
+    chunk_overlap: 200
+
+  # --- Recherche
+  - name: top-k-8
+    top_k: 8
+  - name: mmr
+    search_type: mmr
+
+  # --- Embeddings
+  - name: emb-lexical            # baseline sac de mots : les embeddings denses font-ils mieux ?
+    embedding: {provider: hash}
+  - name: emb-openai
+    embedding: {provider: openai, name: text-embedding-3-small}
+
+  # --- Générateur (LLM)
+  - name: llm-openai-mini
+    llm: {provider: openai, name: gpt-4.1-mini, temperature: 0, price_in_per_1m: null, price_out_per_1m: null}
+  - name: llm-local-mistral     # open source, gratuit, tourne en local avec Ollama
+    llm: {provider: ollama, name: mistral, temperature: 0, price_in_per_1m: 0, price_out_per_1m: 0}

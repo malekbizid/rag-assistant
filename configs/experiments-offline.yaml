@@ -1,0 +1,17 @@
+# Banc d'évaluation hors-ligne sur le corpus d'exemple : vérifie que toute la chaîne tourne.
+base:
+  data_dir: examples/corpus
+  index_dir: data/index
+  chunk_size: 400
+  chunk_overlap: 60
+  top_k: 3
+  embedding: {provider: hash}
+  llm: {provider: fake, price_in_per_1m: 0, price_out_per_1m: 0}
+judge: {provider: fake}
+experiments:
+  - name: offline-k3
+  - name: offline-k1
+    top_k: 1
+  - name: offline-chunks-200
+    chunk_size: 200
+    chunk_overlap: 30

@@ -1,0 +1,21 @@
+services:
+  api:
+    build: .
+    env_file: .env
+    environment:
+      RAG_CONFIG: ${RAG_CONFIG:-configs/default.yaml}
+      OLLAMA_BASE_URL: http://host.docker.internal:11434
+    extra_hosts: ["host.docker.internal:host-gateway"]
+    volumes: ["./data:/app/data", "./results:/app/results", "./configs:/app/configs"]
+    ports: ["8000:8000"]
+
+  ui:
+    build: .
+    command: ["streamlit", "run", "app/streamlit_app.py", "--server.address=0.0.0.0", "--server.port=8501"]
+    env_file: .env
+    environment:
+      RAG_CONFIG: ${RAG_CONFIG:-configs/default.yaml}
+      OLLAMA_BASE_URL: http://host.docker.internal:11434
+    extra_hosts: ["host.docker.internal:host-gateway"]
+    volumes: ["./data:/app/data", "./results:/app/results", "./configs:/app/configs"]
+    ports: ["8501:8501"]
